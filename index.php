@@ -41,7 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 <div class="container">
-    <form id="register-form" role="form" action="/register.php" method="post" >
+        <form id="register-form" role="form" action="/register.php" method="post" >
         <div class="form-group">
                    <div class="mb-3">
                         <label class="control-label" for="id_firstname">Имя</label>
@@ -82,6 +82,17 @@
 
     </form>
 </div>
+
+    <script>
+        $.ajax({
+            method: "POST",
+            url: "register.php",
+            data: { firstname: "John", lastname: "Boston" }
+        })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });
+    </script>
 
   </body>
 </html>
