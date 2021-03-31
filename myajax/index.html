@@ -6,12 +6,37 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form action="some.php" method="post">
-        <input type="text" name="title"><br>
-        <textarea name="content" id="" cols="30" rows="10"></textarea>
-        <button>submit</button>
-    </form>
+
+        <input type="text" name="title" class="title"><br>
+        <textarea name="content" id="" cols="30" rows="10" class="content"></textarea>
+        <button class="submit">submit</button>
+
+
+<script>
+    $(document).ready(function (){
+        $('button.submit').on('click', function(){
+            var titleValue = $('input.title').val();// переменная равна (тэг.класс).значение
+            var contentValue = $('textarea.content').val();
+
+            //ajax- магия начинается тут
+            $.ajax({
+                method: "POST",
+                url: "some.php", //то что у формы action
+                data: { title: titleValue, content: contentValue } //в массив $_POST пихается ключ: значение
+            })
+                .done(function( ) {
+                    alert( "Data Saved: " + msg );
+                });
+            $('input.title').val('');
+            $('textarea.content').val('');
+
+        })
+    })
+
+
+</script>
 </body>
 </html>
